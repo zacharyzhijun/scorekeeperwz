@@ -3,17 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Phase 10 Scorer</title>
-    <meta name="description" content="Keep score and track phases for Phase 10." />
+    <title>Scorekeeper</title>
+    <meta name="description" content="Score trackers for card games. Everything stays on your device." />
 
     <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#11131a" />
 
-    <!-- Home-screen app on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Phase 10" />
+    <meta name="apple-mobile-web-app-title" content="Scorekeeper" />
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
     <link rel="icon" href="icons/icon-192.png" />
 
@@ -21,84 +20,18 @@
   </head>
   <body>
     <header>
-      <h1>Phase 10</h1>
-      <p class="tagline">Lowest score wins once someone finishes phase 10.</p>
+      <h1>Scorekeeper</h1>
+      <p class="tagline">Pick a game. Everything stays on this device.</p>
     </header>
 
     <main>
-      <section id="setup" class="card hidden">
-        <h2>New game</h2>
-        <p class="hint">Add 2–8 players, in turn order.</p>
-        <div id="nameInputs"></div>
-        <div class="row">
-          <button id="addPlayer" class="secondary" type="button">+ Add player</button>
-          <button id="startGame" type="button">Start game</button>
-        </div>
-        <p id="setupError" class="error" role="alert"></p>
-      </section>
+      <nav id="gameList" class="game-list" aria-label="Games"></nav>
 
-      <section id="game" class="card hidden">
-        <div class="row space-between">
-          <h2>Standings</h2>
-          <span id="roundLabel" class="badge"></span>
-        </div>
-        <div id="banner" class="banner hidden" role="status"></div>
-        <table id="standings">
-          <thead>
-            <tr><th>Player</th><th>Phase</th><th class="num">Score</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-
-        <h3 id="entryHeading">Enter this round</h3>
-        <p class="hint">
-          Points left in hand: 1–9 = 5 pts, 10–12 = 10 pts, Skip = 15 pts, Wild = 25 pts.
-        </p>
-        <form id="roundForm"></form>
-        <div class="row">
-          <button id="saveRound" type="submit" form="roundForm">Save round</button>
-          <button id="undoRound" class="secondary" type="button">Undo last</button>
-          <button id="newGame" class="danger" type="button">New game</button>
-        </div>
-
-        <h3>Round history</h3>
-        <div class="scroll">
-          <table id="history">
-            <thead><tr></tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-
-        <details id="phaseList">
-          <summary>The 10 phases</summary>
-          <ol></ol>
-        </details>
-      </section>
-
-      <section id="archive" class="card">
-        <div class="row space-between">
-          <h2>Saved games</h2>
-          <span id="archiveCount" class="badge"></span>
-        </div>
-        <div id="archiveList"></div>
-
-        <h3>Backup</h3>
-        <p class="hint">
-          Scores are stored in this browser only. Export a file before clearing
-          Safari's website data, or to move them to another device.
-        </p>
-        <div class="row">
-          <button id="exportData" class="secondary" type="button">Export backup</button>
-          <label class="file-button secondary">
-            Restore from file
-            <input id="importFile" type="file" accept="application/json,.json" hidden />
-          </label>
-          <button id="clearArchive" class="danger" type="button">Delete all</button>
-        </div>
-      </section>
+      <p id="emptyNote" class="hint center hidden">
+        No games are set up yet. Add one to <code>games.js</code>.
+      </p>
     </main>
 
-    <div id="toast" class="toast hidden" role="status"></div>
-    <script src="app.js" type="module"></script>
+    <script src="home.js" type="module"></script>
   </body>
 </html>

@@ -338,8 +338,8 @@ render();
 renderArchive();
 requestDurableStorage();
 
-// Caches the app so it opens without a server. Needs a secure context:
-// HTTPS, or localhost. Over a plain-HTTP LAN address this simply no-ops.
+// The worker sits at the site root so its scope covers every game. Needs a
+// secure context: HTTPS, or localhost. Over plain HTTP this simply no-ops.
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
+  navigator.serviceWorker.register('../sw.js').catch(() => {});
 }

@@ -1,8 +1,11 @@
-# Phase 10 Scorer
+# Scorekeeper
 
-A Phase 10 score and phase tracker that runs entirely in the browser and
-installs onto an iPhone or iPad home screen. No accounts, no network calls, no
+Score trackers for card games, running entirely in the browser and installable
+onto an iPhone or iPad home screen. No accounts, no network calls, no
 dependencies.
+
+The home page lists the games; each game lives in its own folder. Phase 10 is
+the first.
 
 ## Run it
 
@@ -72,16 +75,35 @@ cannot overwrite a game in progress.
 ## Layout
 
 ```
-server.js              static file server for local development
-docs/                  the whole app — this folder is what gets published
-  index.html           app shell
-  app.js               UI
-  game.js              scoring and phase rules
-  store.js             localStorage: current game, saved games, backup files
-  sw.js                offline cache
-  manifest.webmanifest home-screen metadata
-  icons/               app icons
+server.js                 static file server for local development
+docs/                     the whole app — this folder is what gets published
+  index.html              home page: the game picker
+  home.js                 renders the picker
+  games.js                the list of games  ← edit this to add one
+  styles.css              shared styles for every page
+  sw.js                   offline cache  ← add new files here too
+  manifest.webmanifest    home-screen metadata
+  icons/                  app icons
+  phase10/
+    index.html            the Phase 10 scorer
+    app.js                its UI
+    game.js               its scoring and phase rules
+    store.js              its localStorage: current game, saved games, backups
 ```
+
+## Adding another game
+
+1. Create a folder in `docs/`, say `docs/rummy/`, with its own `index.html`.
+   Link the shared stylesheet with `<link rel="stylesheet" href="../styles.css">`
+   and add `<a class="back" href="../">‹ All games</a>` at the top.
+2. Add an entry to `docs/games.js`. There is a commented-out example showing
+   every field, including the optional `progress()` that puts "In progress"
+   on the home page card.
+3. Add the new files to `SHELL` in `docs/sw.js` and bump `CACHE` to the next
+   version, or the game won't work offline.
+
+Prefix its storage keys with the game's name, the way `phase10.*` does, so two
+games can never tread on each other's data.
 
 ## Running without the Mac
 

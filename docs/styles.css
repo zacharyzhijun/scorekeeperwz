@@ -231,3 +231,60 @@ button.icon {
   -webkit-tap-highlight-color: transparent;
 }
 .file-button:active { transform: scale(0.97); }
+
+/* --- Home page ------------------------------------------------------- */
+
+.game-list { display: grid; gap: 12px; }
+
+.game-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: inherit;
+  text-decoration: none;
+}
+.game-card:active { transform: scale(0.99); }
+
+.game-badge {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 13px;
+  background: linear-gradient(150deg, #f7b53a, #e8912a 60%, #d97b12);
+  color: var(--accent-ink);
+  font-size: 1.22rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.game-text { flex: 1; min-width: 0; }
+.game-text b { display: block; font-size: 1.06rem; }
+.game-text small { display: block; color: var(--muted); font-size: 0.84rem; }
+.game-tagline { margin-top: 2px; }
+.game-meta { margin-top: 4px; font-variant-numeric: tabular-nums; }
+.game-meta.active { color: var(--accent); }
+
+.game-go { flex: none; color: var(--muted); font-size: 1.5rem; line-height: 1; }
+
+.game-card.unavailable { opacity: 0.55; }
+.game-card.unavailable .game-badge { background: #39405a; color: var(--muted); }
+.game-card.unavailable .game-go { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Back to the game picker */
+.back {
+  display: inline-block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  min-height: 32px;
+}
+.back:active { color: var(--accent); }
+
+.center { text-align: center; }

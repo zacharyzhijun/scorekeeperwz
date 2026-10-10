@@ -24,7 +24,11 @@ const MIME = {
 
 const server = createServer(async (req, res) => {
   const { pathname } = new URL(req.url, `http://${req.headers.host ?? 'localhost'}`);
-  const rel = normalize(pathname === '/' ? '/index.html' : pathname).replace(/^(\.\.[/\\])+/, '');
+  let rel = normalize(pathname).replace(/^(\.\.[/\\])+/, '');
+  // Serve a folder's index.html, the way static hosts do: "/phase10/" and
+  // "/phase10" both resolve to "/phase10/index.html".
+  if (rel.endsWith('/')) rel += 'index.html';
+  else if (!extname(rel)) rel += '/index.html';
   const file = join(SITE_DIR, rel);
 
   if (!file.startsWith(SITE_DIR)) {

@@ -1,18 +1,25 @@
 // Caches the app shell so the scorer opens with no signal at the card table.
-const CACHE = 'phase10-v3';
+const CACHE = 'scorekeeper-v4';
 // Relative, so the app works whether it is served from a domain root or from
-// a subfolder such as username.github.io/phase-ten/.
+// a subfolder. Every game's files belong here, or it won't open offline.
 const SHELL = [
+  // Home page
   './',
   './index.html',
+  './home.js',
+  './games.js',
   './styles.css',
-  './app.js',
-  './game.js',
-  './store.js',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',
+
+  // Phase 10
+  './phase10/',
+  './phase10/index.html',
+  './phase10/app.js',
+  './phase10/game.js',
+  './phase10/store.js',
 ];
 
 self.addEventListener('install', (event) => {
