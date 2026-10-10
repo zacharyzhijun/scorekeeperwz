@@ -1,0 +1,233 @@
+:root {
+  --bg: #11131a;
+  --card: #1a1d27;
+  --line: #2c3040;
+  --text: #e8eaf2;
+  --muted: #959bb3;
+  --accent: #f5a524;
+  --accent-ink: #1a1203;
+  --good: #3fbf7f;
+  --bad: #e5484d;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  /* Clears the notch, the status bar and the home indicator when installed. */
+  padding:
+    calc(env(safe-area-inset-top) + 20px)
+    calc(env(safe-area-inset-right) + 16px)
+    calc(env(safe-area-inset-bottom) + 48px)
+    calc(env(safe-area-inset-left) + 16px);
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 -apple-system, system-ui, "Segoe UI", sans-serif;
+  overscroll-behavior-y: contain;
+}
+
+/* Stop iOS double-tap zoom and the grey flash on taps. */
+button, summary, label.check { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+button, th, .badge, 
+header { max-width: 860px; margin: 0 auto 18px; }
+h1 { margin: 0; font-size: 1.75rem; letter-spacing: -0.02em; }
+h2 { margin: 0 0 4px; font-size: 1.2rem; }
+h3 {
+  margin: 26px 0 4px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.tagline, .hint { color: var(--muted); font-size: 0.88rem; margin: 6px 0 0; }
+
+main { max-width: 860px; margin: 0 auto; display: grid; gap: 20px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.hidden { display: none !important; }
+
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 16px; }
+.row.space-between { justify-content: space-between; margin-top: 0; }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  min-height: 44px; /* Apple's minimum comfortable tap target. */
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+}
+button:active { transform: scale(0.97); }
+button.secondary { background: transparent; color: var(--text); border-color: var(--line); }
+button.danger { background: transparent; color: var(--bad); border-color: var(--bad); }
+button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+
+input[type="text"], input[type="number"] {
+  font: inherit;
+  font-size: 16px; /* Anything smaller makes iOS zoom in on focus. */
+  color: var(--text);
+  background: #12141c;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 11px 12px;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input[type="number"]::-webkit-inner-spin-button { display: none; }
+input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+#nameInputs { display: grid; gap: 8px; margin-top: 12px; }
+.name-row { display: flex; gap: 8px; align-items: center; }
+.name-row span { width: 20px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.name-row button { min-width: 44px; padding: 8px 12px; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 10px; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; }
+tbody tr:last-child td { border-bottom: none; }
+td.num, th.num { text-align: right; }
+td.made { color: var(--good); }
+td.empty { color: var(--muted); }
+td.phase b { font-weight: 600; font-size: 0.92rem; }
+td.phase small { display: block; color: var(--muted); font-size: 0.78rem; line-height: 1.3; }
+tr.leader td.phase small { color: var(--accent); opacity: 0.8; }
+tr.leader td { color: var(--accent); font-weight: 600; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.entry {
+  display: grid;
+  grid-template-columns: 1fr 96px auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.entry:last-child { border-bottom: none; }
+.entry .who { font-weight: 600; }
+.entry .who small { display: block; font-weight: 400; color: var(--muted); font-size: 0.8rem; }
+.entry label.check {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 44px;
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.entry input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  accent-color: var(--good);
+  flex: none;
+}
+
+.badge {
+  background: #232734;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.banner {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(63, 191, 127, 0.12);
+  border: 1px solid var(--good);
+  color: var(--good);
+  font-weight: 600;
+}
+
+.error { color: var(--bad); min-height: 1.2em; margin: 10px 0 0; font-size: 0.9rem; }
+
+.toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(env(safe-area-inset-bottom) + 20px);
+  max-width: min(90vw, 420px);
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #272b38;
+  border: 1px solid var(--line);
+  color: var(--text);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  font-size: 0.9rem;
+  z-index: 10;
+}
+
+details { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 14px; }
+summary { cursor: pointer; color: var(--muted); min-height: 32px; }
+details ol { color: var(--muted); font-size: 0.9rem; padding-left: 22px; }
+details li { margin: 5px 0; }
+
+@media (max-width: 560px) {
+  .entry { grid-template-columns: 1fr 88px; row-gap: 4px; }
+  .entry label.check { grid-column: 1 / -1; min-height: 36px; }
+  h1 { font-size: 1.5rem; }
+  .card { padding: 15px; }
+}
+
+/* Saved games */
+.past {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+.past:last-child { border-bottom: none; }
+.past-main { flex: 1; min-width: 0; }
+.past-main b { display: block; font-size: 0.94rem; }
+.past-main small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+button.icon {
+  min-height: 36px;
+  min-width: 36px;
+  padding: 4px 10px;
+  font-size: 1.1rem;
+  line-height: 1;
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--line);
+  flex: none;
+}
+
+/* A file input dressed as a button. */
+.file-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.file-button:active { transform: scale(0.97); }

@@ -1,0 +1,13 @@
+# Netlify reads this file, so there is nothing to configure in its web UI.
+# The app is plain HTML, CSS and JavaScript, so there is no build step —
+# the docs/ folder is published exactly as it is.
+
+[build]
+  publish = "docs"
+
+# The service worker must never be served stale, or updates can't reach a
+# phone that already has the app installed.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"

@@ -1,0 +1,12 @@
+{
+  "name": "phase-ten-scorer",
+  "version": "1.0.0",
+  "description": "Phase 10 score tracker that runs entirely in the browser",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "bundle": "rm -f phase10-site.zip && cd docs && zip -qr ../phase10-site.zip . -x '.DS_Store' '*/.DS_Store' && cd .. && echo 'Created phase10-site.zip \u2014 drag it onto https://app.netlify.com/drop'"
+  },
+  "license": "MIT"
+}
